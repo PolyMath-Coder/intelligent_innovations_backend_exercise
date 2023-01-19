@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { registerUser, loginUser } = require('./auth.controllers');
+const { registerUser, login } = require('./auth.controllers');
 const passport = require('passport');
 const router = Router();
 
@@ -8,6 +8,6 @@ router.post(
   passport.authenticate('user', { session: false }),
   registerUser
 );
-router.post('/login', loginUser);
+router.post('/login', login);
 
 module.exports = router;
