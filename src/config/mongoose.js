@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 const logger = require('../helpers/logger');
-const DB_URL = process.env.DB_URL;
+const { DB_URL } = require('./keys');
 
 const connectToDatabase = () => {
   mongoose.connect(DB_URL);
