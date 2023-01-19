@@ -1,10 +1,13 @@
 const tokenService = require('./token.service');
 const ApiError = require('../helpers/error');
 const passport = require('passport');
+const { sendOnboardingMail } = require('../helpers/email');
 
 const registerUser = async (req, res) => {
   let data = req.user;
+  console.log(data);
   const authToken = await tokenService.generateAuthTokens(data);
+  sendOnboardingMail(data.name, data.email);
   res
     .status(200)
     .json({ status: 'Account Creation Successful!', data, authToken });
