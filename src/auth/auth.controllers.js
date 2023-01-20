@@ -10,7 +10,12 @@ const registerUser = async (req, res) => {
   sendOnboardingMail(data.name, data.email);
   res
     .status(200)
-    .json({ status: 'Account Creation Successful!', data, authToken });
+    .json({
+      status: 'Account Creation Successful!',
+      message: 'Email sent to Newly Created User',
+      data,
+      authToken,
+    });
 };
 
 const login = (req, res, next) => {
