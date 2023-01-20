@@ -18,10 +18,8 @@ const postSchema = new Schema({
         type: String,
       },
       commentator: {
-        type: {
-          type: Schema.Types.ObjectId,
-          ref: 'User',
-        },
+        type: Schema.Types.ObjectId,
+        ref: 'User',
       },
     },
   ],

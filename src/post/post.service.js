@@ -29,8 +29,19 @@ const likePost = async (userId, postId) => {
   );
 };
 
+const makeComment = async (user, comment, postId) => {
+  let data = {};
+  data.comment = comment;
+  data.commentator = user;
+  return await Post.findByIdAndUpdate(
+    postId,
+    { $push: { commentaries: data } },
+    { new: true }
+  );
+};
+
 const deletePost = async (id) => {
   return await Post.findByIdAndDelete(id);
 };
 
-module.exports = { createPost, likePost, deletePost };
+module.exports = { createPost, likePost, makeComment, deletePost };
