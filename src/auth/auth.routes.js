@@ -1,9 +1,10 @@
 const { Router } = require('express');
-const { registerUser, login } = require('./auth.controllers');
+const { registerUser, login, logOut } = require('./auth.controllers');
 const { checkEmail } = require('../helpers/checkEmail');
 const { authValidator } = require('../helpers/validate');
 
 const passport = require('passport');
+const { userAuthentication } = require('../helpers/auth');
 const router = Router();
 
 router.post(
@@ -14,5 +15,7 @@ router.post(
   registerUser
 );
 router.post('/login', authValidator, login);
+
+router.post('/logout', userAuthentication, logOut);
 
 module.exports = router;

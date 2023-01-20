@@ -24,4 +24,16 @@ const generateAuthTokens = async (user, newUser = false) => {
   return returnTokens;
 };
 
-module.exports = { generateAuthTokens, generateToken };
+const expireUserToken = async (user, newUser = false) => {
+  const accessTokenExpires = moment().add(0, 'seconds');
+  const accessToken = generateToken(user, accessTokenExpires);
+  const returnTokens = {
+    access: {
+      token: accessToken,
+      expires: accessTokenExpires.toDate(),
+    },
+  };
+  return returnTokens;
+};
+
+module.exports = { generateAuthTokens, generateToken, expireUserToken };

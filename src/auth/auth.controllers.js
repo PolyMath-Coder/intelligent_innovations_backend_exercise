@@ -28,7 +28,6 @@ const login = (req, res, next) => {
       }
       req.login(user, { session: false }, async (err) => {
         if (err) return next(err);
-        console.log(user);
         const body = {
           _id: user._id,
           email: user.email,
@@ -48,4 +47,9 @@ const login = (req, res, next) => {
   })(req, res, next);
 };
 
-module.exports = { login, registerUser };
+const logOut = async (req, res) => {
+  await tokenService.expireUserToken(req.user._id);
+  res.redirect('/');
+};
+
+module.exports = { login, registerUser, logOut };
