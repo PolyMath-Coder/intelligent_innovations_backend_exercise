@@ -78,3 +78,7 @@ Success
 ```
 
 Kindly peruse through the [Postman API Documentation](https://documenter.getpostman.com/view/15118089/UyrGCuYQ) to have a comprehensive overview of all exposed endpoints.
+
+## Technologies Used.
+
+- [Mongo DB](https://account.mongodb.com/account/login?n=%2Fv2%2F6051c58edfe30d503cc47b3f&nextHash=%23clusters) Database Provider
