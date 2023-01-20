@@ -29,6 +29,10 @@ const likePost = async (userId, postId) => {
   );
 };
 
+const getTwits = async () => {
+  const post = await Post.find().sort({ _id: -1 }).sk;
+};
+
 const makeComment = async (user, comment, postId) => {
   let data = {};
   data.comment = comment;
@@ -44,4 +48,4 @@ const deletePost = async (id) => {
   return await Post.findByIdAndDelete(id);
 };
 
-module.exports = { createPost, likePost, makeComment, deletePost };
+module.exports = { createPost, likePost, getTwits, makeComment, deletePost };

@@ -1,5 +1,6 @@
 const postService = require('./post.service');
 const catchAsync = require('express-async-handler');
+const Post = require('./post.model');
 
 const createPost = catchAsync(async (req, res) => {
   const post = await postService.createPost(req.body, req.user._id);
@@ -15,6 +16,19 @@ const likePost = catchAsync(async (req, res) => {
     .status(200)
     .json({ status: true, message: 'You successfully liked this twit!' });
 });
+
+const getAllTwits = async (req, res) => {
+  const page = req.query.page || 1;
+  const per_page = req.query.per_page * 1 || 20;
+  const skip = (page - 1) * per_page;
+  const role = req.query;
+  const posts = await Post.find({ sort_id: -1 })
+    .skip(skip)
+    .limit(per_page);
+  res
+    .status(200)
+    .json({ status: 'success', message: 'All Twits now retrieved...', posts });
+};
 
 const addCommentary = async (req, res) => {
   const post = await postService.makeComment(
@@ -37,4 +51,10 @@ const deletePost = async (req, res) => {
   });
 };
 
-module.exports = { createPost, deletePost, likePost, addCommentary };
+module.exports = {
+  createPost,
+  deletePost,
+  likePost,
+  addCommentary,
+  getAllTwits,
+};
