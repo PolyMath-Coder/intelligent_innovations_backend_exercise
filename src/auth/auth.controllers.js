@@ -49,7 +49,7 @@ const login = (req, res, next) => {
 
 const logOut = async (req, res) => {
   await tokenService.expireUserToken(req.user._id);
-  res.redirect('/');
+  res.redirect('/login');
 };
 
 module.exports = { login, registerUser, logOut };

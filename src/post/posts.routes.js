@@ -11,7 +11,7 @@ const router = Router();
 router.post('/create', userAuthentication, createPost);
 
 router.put('/add/like', userAuthentication, likePost);
-router.patch('/add/comment/:_id', userAuthentication, addCommentary);
+router.post('/add/comment/:_id', userAuthentication, addCommentary);
 
 router.delete(
   '/delete/:id',
