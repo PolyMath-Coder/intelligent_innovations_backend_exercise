@@ -17,7 +17,7 @@ This is the server-side technology of Twitee (a social media micro-blogging appl
 
 ## Useful Links.
 
-- [Postman Documentation](https://documenter.getpostman.com/view/15118089/UyrGCuYQ)
+- [Postman Documentation](https://documenter.getpostman.com/view/15118089/2s8ZDYWLzj)
 - [Base URL for Live API](https://intelligent-innovations.onrender.com/)
 
 ---
@@ -77,8 +77,10 @@ Success
 }
 ```
 
-Kindly peruse through the [Postman API Documentation](https://documenter.getpostman.com/view/15118089/UyrGCuYQ) to have a comprehensive overview of all exposed endpoints.
+Kindly peruse through the [Postman API Documentation](https://documenter.getpostman.com/view/15118089/2s8ZDYWLzj) to have a comprehensive overview of all exposed endpoints.
 
 ## Technologies Used.
 
-- [Mongo DB](https://account.mongodb.com/account/login?n=%2Fv2%2F6051c58edfe30d503cc47b3f&nextHash=%23clusters) Database Provider
+- [Mongo DB](https://account.mongodb.com/account/login?n=%2Fv2%2F6051c58edfe30d503cc47b3f&nextHash=%23clusters) as Database Provider
+
+- [Sendgrid](https://sendgrid.com/) for sending emails.
