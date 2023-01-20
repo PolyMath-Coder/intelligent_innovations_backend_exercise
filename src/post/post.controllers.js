@@ -8,6 +8,16 @@ const createPost = catchAsync(async (req, res) => {
     .json({ status: 'success', message: 'Twit successfully Posted...', post });
 });
 
+const likePost = catchAsync(async (req, res) => {
+  const post = await postService.likePost(req.user._id, req.query.postId);
+
+  res
+    .status(200)
+    .json({ status: true, message: 'You successfully liked this twit!' });
+});
+
+const makeComment = (req, res) => {};
+
 const deletePost = async (req, res) => {
   const post = await postService.deletePost(req.params.id);
   res.status(200).json({
@@ -16,4 +26,4 @@ const deletePost = async (req, res) => {
   });
 };
 
-module.exports = { createPost, deletePost };
+module.exports = { createPost, deletePost, likePost };

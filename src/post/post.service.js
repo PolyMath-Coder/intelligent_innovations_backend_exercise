@@ -1,5 +1,6 @@
 const moment = require('moment/moment');
 const Post = require('./post.model');
+const ApiError = require('../helpers/error');
 
 const createPost = async (data, user) => {
   data.timeOfPost = moment().format('hh:mm a');
@@ -9,8 +10,27 @@ const createPost = async (data, user) => {
   return post;
 };
 
+const likePost = async (userId, postId) => {
+  const { likes, likedBy } = await Post.findById(postId);
+  for (i = 0; i < likedBy.length; i++) {
+    if (userId == likedBy[i]) {
+      throw new ApiError(400, 'Oops! You already liked this twit earlier...');
+    }
+  }
+  const actualLikes = likes + 1;
+
+  await Post.findByIdAndUpdate(postId, { likes: actualLikes }, { new: true });
+  return await Post.findByIdAndUpdate(
+    postId,
+    {
+      $push: { likedBy: [userId] },
+    },
+    { new: true }
+  );
+};
+
 const deletePost = async (id) => {
   return await Post.findByIdAndDelete(id);
 };
 
-module.exports = { createPost, deletePost };
+module.exports = { createPost, likePost, deletePost };
