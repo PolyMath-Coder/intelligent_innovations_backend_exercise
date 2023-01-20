@@ -30,7 +30,7 @@ const likePost = async (userId, postId) => {
 };
 
 const getTwits = async () => {
-  const post = await Post.find().sort({ _id: -1 }).sk;
+  const post = await Post.find().sort({ _id: -1 });
 };
 
 const makeComment = async (user, comment, postId) => {
