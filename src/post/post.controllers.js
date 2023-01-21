@@ -17,7 +17,7 @@ const likePost = catchAsync(async (req, res) => {
     .json({ status: true, message: 'You successfully liked this twit!' });
 });
 
-const getAllTwits = async (req, res) => {
+const getAllTwits = catchAsync(async (req, res) => {
   const page = req.query.page || 1;
   const per_page = req.query.per_page * 1 || 20;
   const skip = (page - 1) * per_page;
@@ -28,9 +28,9 @@ const getAllTwits = async (req, res) => {
   res
     .status(200)
     .json({ status: 'success', message: 'All Twits now retrieved...', posts });
-};
+});
 
-const addCommentary = async (req, res) => {
+const addCommentary = catchAsync(async (req, res) => {
   const post = await postService.makeComment(
     req.user._id,
     req.body.comment,
@@ -41,15 +41,15 @@ const addCommentary = async (req, res) => {
     message: `Your commentary was added to the twit ${req.params._id}`,
     post,
   });
-};
+});
 
-const deletePost = async (req, res) => {
+const deletePost = catchAsync(async (req, res) => {
   const post = await postService.deletePost(req.params.id);
   res.status(200).json({
     status: 'success',
     message: `Twit with the id ${req.params.id} is now deleted...`,
   });
-};
+});
 
 module.exports = {
   createPost,

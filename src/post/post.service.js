@@ -1,6 +1,7 @@
 const moment = require('moment/moment');
 const Post = require('./post.model');
 const ApiError = require('../helpers/error');
+const catchAsync = require('express-async-handler');
 
 const createPost = async (data, user) => {
   data.timeOfPost = moment().format('hh:mm a');

@@ -2,23 +2,22 @@ const tokenService = require('./token.service');
 const ApiError = require('../helpers/error');
 const passport = require('passport');
 const { sendOnboardingMail } = require('../helpers/email');
+const catchAsync = require('express-async-handler');
 
-const registerUser = async (req, res) => {
+const registerUser = catchAsync(async (req, res) => {
   let data = req.user;
   console.log(data);
   const authToken = await tokenService.generateAuthTokens(data);
   sendOnboardingMail(data.name, data.email);
-  res
-    .status(200)
-    .json({
-      status: 'Account Creation Successful!',
-      message: 'Email sent to Newly Created User',
-      data,
-      authToken,
-    });
-};
+  res.status(200).json({
+    status: 'Account Creation Successful!',
+    message: 'Email sent to Newly Created User',
+    data,
+    authToken,
+  });
+});
 
-const login = (req, res, next) => {
+const login = catchAsync((req, res, next) => {
   passport.authenticate('login', async (err, user, info) => {
     try {
       if (err) {
@@ -50,11 +49,11 @@ const login = (req, res, next) => {
       return next(error);
     }
   })(req, res, next);
-};
+});
 
-const logOut = async (req, res) => {
+const logOut = catchAsync(async (req, res) => {
   await tokenService.expireUserToken(req.user._id);
   res.redirect('/login');
-};
+});
 
 module.exports = { login, registerUser, logOut };
