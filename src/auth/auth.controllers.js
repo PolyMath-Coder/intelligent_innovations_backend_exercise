@@ -38,6 +38,8 @@ const login = catchAsync((req, res, next) => {
           name: user.name,
         };
         const token = await tokenService.generateAuthTokens(body);
+        const maxAge = 3 * 24 * 60 * 60;
+        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge });
         res.status(200).json({
           status: 'success',
           message: 'Login Successful!',
@@ -53,6 +55,7 @@ const login = catchAsync((req, res, next) => {
 
 const logOut = catchAsync(async (req, res) => {
   await tokenService.expireUserToken(req.user._id);
+  res.cookie('jwt', '', { maxAge: 1 });
   res.redirect('/login');
 });
 
