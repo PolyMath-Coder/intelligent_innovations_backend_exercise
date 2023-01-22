@@ -35,7 +35,7 @@ This is the server-side technology of Twitee (a social media micro-blogging appl
 | password    | string    | required    |
 | dateCreated | Date      | required    |
 
-### Blog
+### Post
 
 | field        | data_type | constraints |
 | ------------ | --------- | ----------- |
@@ -69,13 +69,17 @@ Success
     message: 'Email sent to newly created user.'
 
     user: {
-        "name": "john_doe",
-        "email": "john_doe@example.com",
+        "name": "ayoluwadeleke",
+        "email": "ayoluwadeleke@gmail.com",
         "password": "Password1"
     },
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM2Njg0OGIzNGQ4OTIzYjA1NjM5NjJkIiwiZW1haWwiOiJheW9sdXdhbWlyYWNsZUBnbWFpbC5jb20ifSwiaWF0IjoxNjY3NjYyOTg5LCJleHAiOjE2Njc2NjY1ODl9.YPoI35Y5oJqdmIRBTWOm8scFR7sDDhCav-Fw8VFaqX8"
 }
 ```
+
+## Screenshot of sample mail sent.
+
+<img src="images/Screenshot%20(678).png" >
 
 Kindly peruse through the [Postman API Documentation](https://documenter.getpostman.com/view/15118089/2s8ZDYWLzj) to have a comprehensive overview of all exposed endpoints.
 
