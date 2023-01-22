@@ -59,7 +59,7 @@ This is the server-side technology of Twitee (a social media micro-blogging appl
 }
 ```
 
-- Responses
+- Response
 
 Success
 
