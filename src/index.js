@@ -25,6 +25,6 @@ connectToDatabase();
 app.use(errorConverter);
 app.use(errorHandler);
 
-app.listen(PORT, () => {
+module.exports = app.listen(PORT, () => {
   logger.info(`Server now live at the port ${PORT}`);
 });
