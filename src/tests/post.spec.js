@@ -5,7 +5,7 @@ const Post = require('../post/post.model');
 
 const app = require('../index');
 
-it('should create a blog', async () => {
+it('should create a post', async () => {
   // create blog in our db
   await Post.create({
     content: 'The fault in our stars',
